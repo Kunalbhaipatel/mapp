@@ -59,11 +59,19 @@ h1 { font-size: 2.4rem; font-weight: 700; color: #004578; }
 
 # Upload Section
 with st.expander("📁 Upload your CSV file", expanded=True):
-    
+with st.expander("📁 Upload your CSV file", expanded=True):
+    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+    if uploaded_file:
+        data = pd.read_csv(uploaded_file, quotechar='\"', skipinitialspace=True, engine="python")
+    else:
+        st.stop()
 @st.cache_data
-def load_data(file):
-    return pd.read_csv(file, quotechar='"', skipinitialspace=True, engine="python")
+@st.cache_data
+def load_data():
+    return pd.read_csv("data/master_dashboard_data.csv")
 
+if 'data' not in locals():
+    data = load_data()
 
 @st.cache_data
 def load_data():
