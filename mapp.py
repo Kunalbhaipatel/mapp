@@ -147,8 +147,7 @@ with tabs[0]:
         fig = px.bar(melted_df, x="Well_Name", y="Value", color="Metric", barmode="group",
                      title="Well Name vs Key Metrics", height=600)
         with st.spinner('Rendering chart...'):
-            # Spinner placeholder
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(...)
     else:
         st.warning("No valid numeric data found for chart.")
 
