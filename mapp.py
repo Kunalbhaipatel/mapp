@@ -147,7 +147,7 @@ with tabs[0]:
         fig = px.bar(melted_df, x="Well_Name", y="Value", color="Metric", barmode="group",
                      title="Well Name vs Key Metrics", height=600)
         with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+            # Spinner placeholder
     st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning("No valid numeric data found for chart.")
@@ -166,7 +166,7 @@ with tabs[1]:
                           labels={"value": "Barrels", "variable": "Metric"},
                           color_discrete_sequence=px.colors.qualitative.Prism)
             with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                # Spinner placeholder
     st.plotly_chart(fig1, use_container_width=True)
 
     with chart2:
@@ -176,7 +176,7 @@ with tabs[1]:
             fig2 = px.bar(subset, x="Well_Name", y=y_cols, barmode="stack", height=400,
                           color_discrete_sequence=px.colors.qualitative.Set2)
             with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                # Spinner placeholder
     st.plotly_chart(fig2, use_container_width=True)
 
     st.markdown("### 📈 DSRE vs Ratios")
@@ -191,7 +191,7 @@ with tabs[1]:
                 fig3.add_scatter(x=subset["Well_Name"], y=subset["Dilution_Ratio"], mode='lines+markers', name="Dilution Ratio",
                                  line=dict(color="gray"))
             with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                # Spinner placeholder
     st.plotly_chart(fig3, use_container_width=True)
         except Exception as e:
             st.error(f"Chart rendering error: {e}")
@@ -205,7 +205,7 @@ with tabs[1]:
                            labels={"value": "Ratio", "variable": "Metric"},
                            title="Dilution vs SCE Loss Ratios")
             with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                # Spinner placeholder
     st.plotly_chart(fig4, use_container_width=True)
         except Exception as e:
             st.error(f"Error rendering ratio comparison chart: {e}")
@@ -247,7 +247,7 @@ with tabs[3]:
                 labels={"ROP": "Rate of Penetration", "Temp": "Temperature (°F)"}
             )
             with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                # Spinner placeholder
     st.plotly_chart(fig_rop_temp, use_container_width=True)
         except Exception as e:
             st.error(f"Error rendering ROP vs Temp chart: {e}")
@@ -261,7 +261,7 @@ with tabs[3]:
                 labels={"Base_Oil": "Base Oil (bbl)", "Water": "Water (bbl)"}
             )
             with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                # Spinner placeholder
     st.plotly_chart(fig_bo_water, use_container_width=True)
         except Exception as e:
             st.error(f"Error rendering Base Oil vs Water chart: {e}")
@@ -273,7 +273,7 @@ with tabs[3]:
         corr_matrix = corr_data.corr()
         fig_corr = px.imshow(corr_matrix, text_auto=True, aspect="auto", color_continuous_scale='Blues')
         with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+            # Spinner placeholder
     st.plotly_chart(fig_corr, use_container_width=True)
     except Exception as e:
         st.error(f"Correlation heatmap error: {e}")
@@ -308,7 +308,7 @@ with tabs[4]:
                     color_discrete_map={"Derrick": "#007635", "Non-Derrick": "lightgrey"}
                 )
                 with st.spinner('Rendering chart...'):
-    # Spinner placeholder
+                    # Spinner placeholder
     st.plotly_chart(fig, use_container_width=True)
 
                 st.markdown("### 📋 Group Summary Statistics")
