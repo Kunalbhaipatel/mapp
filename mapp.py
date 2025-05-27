@@ -59,21 +59,21 @@ h1 { font-size: 2.4rem; font-weight: 700; color: #004578; }
 
 # Upload Section
 with st.expander("📁 Upload your CSV file", expanded=True):
-    pass  # Prevent IndentationError
     
 @st.cache_data
 def load_data(file):
     return pd.read_csv(file, quotechar='"', skipinitialspace=True, engine="python")
 
+uploaded_file = st.file_uploader("", type="csv")
+    if uploaded_file:
+        data = pd.read_csv(uploaded_file, quotechar='"', skipinitialspace=True, engine="python")
+        st.success("CSV uploaded and loaded successfully!")
 
-@st.cache_data
-def load_data():
-    return pd.read_csv("data/master_dashboard_data.csv")
 
-data = load_data()
-if "Discard_Ratio" in data.columns:
-    data["SCE_Loss_Ratio"] = data["Discard_Ratio"]
 
+    else:
+        st.warning("Please upload a CSV file to get started.")
+        st.stop()
 
 # Filters
 st.title("📊 Rig Comparison Dashboard")
@@ -128,10 +128,8 @@ with tabs[0]:
     if not melted_df.empty:
         fig = px.bar(melted_df, x="Well_Name", y="Value", color="Metric", barmode="group",
                      title="Well Name vs Key Metrics", height=600)
-                with st.spinner('Rendering chart...'):
-        st.plotly_chart(fig, use_container_width=True)
-
-
+        with st.spinner('Rendering chart...'):
+    st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning("No valid numeric data found for chart.")
 
@@ -325,12 +323,3 @@ with tabs[4]:
             st.info("Select at least one metric to view comparison.")
     else:
         st.warning("'flowline_Shakers' column not found in dataset.")
-
-# ---------- FOOTER ----------
-st.markdown("---")
-st.markdown(
-    "<div style='text-align: center; color: grey; font-size: 13px;'>"
-    "Powered by <strong>Prodigy IQ</strong> | Innovation Ahead · Shaping Tomorrow"
-    "</div>",
-    unsafe_allow_html=True
-)
